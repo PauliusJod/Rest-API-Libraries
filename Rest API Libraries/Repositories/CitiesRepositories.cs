@@ -9,6 +9,7 @@ namespace Rest_API_Libraries.Repositories
     {
         Task CreateAsync(City city);
         Task DeleteAsync(City city);
+        Task<IReadOnlyList<Book>> GetAllCityBooks(int cityId);
         Task<List<City>> GetCitiesAsync();
         Task<City?> GetCityAsync(int cityid);
         Task UpdateAsync(City city);
@@ -25,7 +26,7 @@ namespace Rest_API_Libraries.Repositories
 
         public async Task<City?> GetCityAsync(int cityid)
         {
-            return await _librariesDbContext.Cities.FirstOrDefaultAsync(o => o.cityId == cityid);
+            return await _librariesDbContext.Cities.FirstOrDefaultAsync(o => o.Id == cityid);
         }
         public async Task<List<City>> GetCitiesAsync()
         {
@@ -49,6 +50,15 @@ namespace Rest_API_Libraries.Repositories
             _librariesDbContext.Cities.Remove(city);
             await _librariesDbContext.SaveChangesAsync();
 
+        }
+        public async Task<IReadOnlyList<Book>> GetAllCityBooks(int cityId)
+        {
+            return await _librariesDbContext.Books
+                .AsNoTracking()
+                .Include(o => o.library)
+                .ThenInclude(o => o.City)
+                .Where(o => o.library.City.Id == cityId)
+                .ToListAsync();
         }
 
     }

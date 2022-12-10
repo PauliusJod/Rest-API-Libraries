@@ -7,104 +7,112 @@ namespace Rest_API_Libraries.Controllers
 {
 
 
-    //[ApiController]
-    //[Route("api/books")]
-    //public class BooksController : ControllerBase
-    //{
+    [ApiController]
+    [Route("api/cities/{cityId}/libraries/{libraryId}/books")]
+    public class BooksController : ControllerBase
+    {
+        /*
+             * api/v1/cities        GET List 200
+             * api/v1/cities/{id}   GET One 200
+             * api/v1/cities        POST Create 201
+             * api/v1/cities/{id}   PUT/PATCH Modify 200
+             * api/v1/cities/{id}   DELETE Remove 200/204
+             */
 
-    //    private readonly IBooksRepositories _booksRepository;
 
-    //    public BooksController(IBooksRepositories booksRepository)
-    //    {
-    //        _booksRepository = booksRepository;
-    //    }
-    //    //                    .AsNoTracking()
-    //    //            .Include(o => o.District)
-    //    //            .ThenInclude(o => o.City)
-    //    //            .Where(o => o.District.City.Id == cityId)
-    //    //            .ToListAsync();
-    //    //}
-    //    //api/v1/cities
-    //    [HttpGet]
-    //    public async Task<IEnumerable<BookDto>> GetBooks()
-    //    {
-    //        var books = await _booksRepository.GetBooksAsync();
+        private readonly ILibrariesRepositories _librariesRepository;
+        private readonly IBooksRepository _booksRepository;
+        private readonly ICitiesRepositories _citiesRepository;
 
-    //        var books2 = books.Take(2);
+        public BooksController(ILibrariesRepositories librariesRepository, IBooksRepository booksRepository, ICitiesRepositories citiesRepository)
+        {
+            _librariesRepository = librariesRepository;
+            _booksRepository = booksRepository;
+            _citiesRepository = citiesRepository;
+        }
 
-    //        return books2.Select(o => new BookDto(o.libraryId, o.bookName, o.bookDesc, o.libraryId));
-    //    }
-        
-    //        //return libraries.Select(o => new LibraryDto(o.Id, o.LibraryName, o.LibraryDescription, o.LibraryBookedBooks)).Where(o => o.LibraryDescription == ".+5.+").ToList();
-    //    //api/v1/cities/{id}
-    //    [HttpGet]
-    //    [Route("{bookId}")]
-    //    public async Task<ActionResult<BookDto>> GetBook(int bookId)
-    //    {
-    //        var book = await _booksRepository.GetBookAsync(bookId);
 
-    //        // 404
-    //        if (book == null)
-    //            return NotFound();
-
-    //        return new BookDto(book.bookId, book.bookName, book.bookDesc, book.libraryId);
-    //    }
         //api/v1/cities
-        //[HttpPost]
-        //public async Task<ActionResult<UserDto>> Create(CreateUserDto createUserDto)
-        //{
+        [HttpGet]
+        public async Task<IEnumerable<BookDto>> GetBooks(int cityId, int libraryId)
+        {
+            var books = await _booksRepository.GetBooksAsync(cityId, libraryId);
 
-        //    var user = new User
-        //    {
-        //        userName = createUserDto.UserName,
-        //        userSurname = createUserDto.UserSurname,
-        //        userAge = createUserDto.UserAge
-        //    };
+            return books.Select(o => new BookDto(o.BookId, o.BookAuthor, o.BookName, o.BookDesc));
+        }
 
-        //    //library.District = district; //SVARBU
-        //    await _usersRepository.CreateAsync(user);
+        //api/v1/cities/{id}
+        [HttpGet]
+        [Route("{bookId}")]
+        public async Task<ActionResult<BookDto>> GetBook(int cityId, int libraryId, int bookId)
+        {
+            var book = await _booksRepository.GetBookAsync(cityId, libraryId, bookId);
 
+            // 404
+            if (book == null)
+                return NotFound();
 
-        //    // 201
-        //    return Created($"api/users/{user.userId}", new CreateUserDto(user.userName, user.userSurname, user.userAge));
-        //}
+            return new BookDto(book.BookId, book.BookAuthor, book.BookName, book.BookDesc);
+        }
+        //api/v1/cities
+        [HttpPost]
+        public async Task<ActionResult<BookDto>> Create(int cityId, int libraryId, CreateBookDto createBookDto)
+        {
 
-        ////api/v1/cities/{id}
-        //[HttpPut]
-        //[Route("{userId}")]
-        //public async Task<ActionResult<UserDto>> Update(int userId, UpdateUserDto updateUserDto)
-        //{
-        //    var user = await _usersRepository.GetUserAsync(userId);
+            var city = await _citiesRepository.GetCityAsync(cityId);
+            var library = await _librariesRepository.GetLibraryAsync(cityId, libraryId);
+            if (city == null || library == null)
+                return NotFound($"ERROR city{cityId} or library{libraryId}");
 
+            var book = new Book
+            {
+                BookAuthor = createBookDto.BookAuthor,
+                BookName = createBookDto.BookName,
+                BookDesc = createBookDto.BookDesc
+            };
 
-        //    if (user == null)
-        //        return NotFound($"ERROR user {userId}");
-
-        //    user.userName = updateUserDto.UserName;
-        //    user.userSurname = updateUserDto.UserSurname;
-        //    user.userAge = updateUserDto.UserAge;
-        //    await _usersRepository.UpdateAsync(user);
-
-        //    return Ok(new UserDto(user.userId, user.userName, user.userSurname, user.userAge));
-        //}
-
-        ////api/v1/cities/{id}
-        //[HttpDelete]
-        //[Route("{userId}")]
-        //public async Task<ActionResult> Remove(int userId)
-        //{
-        //    var user = await _usersRepository.GetUserAsync(userId);
-
-        //    // 404
-        //    if (user == null)
-        //        return NotFound();
-        //    await _usersRepository.DeleteAsync(user);
-
-        //    // 204
-        //    return NoContent();
-        //}
+            book.library = library; //SVARBU
+            await _booksRepository.CreateAsync(book);
 
 
+            // 201
+            return Created($"api/cities/{cityId}/libraries/{library.Id}/books/{book.BookId}", new CreateBookDto(book.BookAuthor, book.BookName, book.BookDesc));
+        }
 
-    //}
+        //api/v1/cities/{id}
+        [HttpPut]
+        [Route("{bookId}")]
+        public async Task<ActionResult<BookDto>> Update(int libraryId, int cityId, int bookId, UpdateBookDto updateBookDto)
+        {
+            //return NotFound($"ERROR aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa {bookId}");
+            var book = await _booksRepository.GetBookAsync(cityId, libraryId, bookId);
+
+            // 404
+            if (book == null)
+                return NotFound($"ERROR book {bookId}");
+
+            book.BookDesc = updateBookDto.BookDesc;
+            await _booksRepository.UpdateAsync(book);
+
+            return Ok(new BookDto(book.BookId, book.BookAuthor, book.BookName, book.BookDesc));
+        }
+
+        //api/v1/cities/{id}
+        [HttpDelete]
+        [Route("{bookId}")]
+        public async Task<ActionResult> Remove(int libraryId, int cityId, int bookId)
+        {
+            var book = await _booksRepository.GetBookAsync(cityId, libraryId, bookId);
+
+            // 404
+            if (book == null)
+                return NotFound();
+            await _booksRepository.DeleteAsync(book);
+
+            // 204
+            return NoContent();
+        }
+
+
+    }
 }

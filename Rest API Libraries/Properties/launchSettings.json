@@ -10,6 +10,7 @@
   "profiles": {
     "Rest_API_Libraries": {
       "commandName": "Project",
+      "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7011;http://localhost:5011",
       "environmentVariables": {
