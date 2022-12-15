@@ -1,8 +1,8 @@
-﻿import { Navigate } from 'react-router-dom';
-import { Button, Form } from 'semantic-ui-react'
+﻿import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { Button, Form } from 'semantic-ui-react';
 import axios from 'axios';
 import AuthService from '../services/authservice';
-import React, { useEffect, useState } from 'react';
 
 export default function CitEdit() {
     const [id, getID] = useState(null);

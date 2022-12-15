@@ -1,4 +1,5 @@
-﻿import Constants from "../utilities/Constants";
+﻿import React, { useState } from 'react';
+import Constants from "../utilities/Constants";
 import { Link, useNavigate } from 'react-router-dom'
 import CitEdit from './CitEdit';
 import CitCreate from './CitCreate';
@@ -6,7 +7,6 @@ import axios from 'axios';
 import Modal from './Modal';
 import AuthService from '../services/authservice';
 
-import React, { useState } from 'react';
 
 const BUTTON_WRAPPER_STYLES = {
     //backgroundColor: 'red',
