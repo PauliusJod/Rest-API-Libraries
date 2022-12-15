@@ -7,8 +7,5 @@
         public record CreateCityDto(string Name, string Description);
         public record UpdateCityDto(string Description);
 
-        //public record CityDto(int CityId, string CityName, string UserId);
-        //public record CreateCityDto(string CityName, string UserId);
-        //public record UpdateCityDto(string CityName, string UserId);
     }
 }

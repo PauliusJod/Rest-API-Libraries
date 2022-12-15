@@ -1,8 +1,8 @@
 using Rest_API_Libraries.Repositories;
 using Rest_API_Libraries.Properties;
 using Microsoft.AspNetCore.Identity;
-using Rest_API_Libraries.Entities;
-using Rest_API_Libraries.Auth.Model;
+//using Rest_API_Libraries.Entities;
+//using Rest_API_Libraries.Auth.Model;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;

@@ -4,7 +4,6 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import "../style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import AuthService from "../services/authservice";
 import { withRouter } from "./common/with-router";
 import backend, { replaceBackend } from "./backend/backend.js";

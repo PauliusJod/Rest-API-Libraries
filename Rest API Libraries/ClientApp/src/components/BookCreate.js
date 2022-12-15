@@ -1,9 +1,7 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'semantic-ui-react'
-import Constants from "../utilities/Constants";
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import AllCities from './AllCities';
 import AuthService from '../services/authservice';
 
 

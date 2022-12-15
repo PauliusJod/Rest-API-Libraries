@@ -15,15 +15,5 @@ namespace Rest_API_Libraries.Entities
         public string UserId { get; set; }
 
         public LibrariesUser User { get; set; }
-
-
-        //public int cityId { get; set; }
-        //public string cityName { get; set; }
-
-
-        //[Required]
-        //public string UserId { get; set; }
-        //public LibrariesUser User { get; set; }
-
     }
 }
