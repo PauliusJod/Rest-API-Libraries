@@ -1,5 +1,4 @@
 ﻿import axios, { AxiosInstance } from 'axios';
-
 /**
  * This module exposes a separate axios instance to be used for connections to backend.
  *
