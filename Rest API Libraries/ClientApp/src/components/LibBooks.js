@@ -2,12 +2,12 @@
 import Constants from "../utilities/Constants";
 import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
-import LibEdit from './LibEdit';
+import BookEdit from './BookEdit';
+import BookCreate from './BookCreate';
 import axios from 'axios';
 
 import backend from "./backend/backend.js";
 import AuthService from '../services/authservice';
-
 function LibBook() {
     const [id, getID] = useState(null);
     const [Libid, getLibID] = useState(null);
@@ -15,6 +15,7 @@ function LibBook() {
     console.log('Book() pradzia');
     const [books, setBooks] = useState([]);
 
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -23,7 +24,27 @@ function LibBook() {
         getID(localStorage.getItem("Id"));
         getLibID(localStorage.getItem("Libid"));
     }, []);
+    const a = AuthService.getCurrentUser();
+    console.log(a);
+    const headers = {
+        'Authorization': `Bearer ${a.accessToken}`
+    };
 
+    //const handleLink = (id) => {
+    //    localStorage.setItem("Id", id)
+
+    //    navigate("/allCities/citLibraries");
+
+    //}
+
+    const handleDelete = (bookid) => {
+        console.log('delete book : ' + bookid);
+        console.log(headers);
+        axios.delete(`https://localhost:7011/api/cities/${id}` + "/libraries/" + `${Libid}` + "/books/" + `${bookid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
+
+        navigate("/allCities/citLibraries/libBooks");
+
+    };
     function getBooks() {
         const url = `https://localhost:7011/api/cities/${id}` + "/libraries/" + Libid + "/books";
 
@@ -43,6 +64,9 @@ function LibBook() {
             });
     }
     console.log('return pradzia');
+    {/*className="table table-hover"*/ }
+    {/*className="btn btn-success"*/ }
+    {/*className="btn btn-dark"*/ }
     return (
         <div className="Book">
             <div className="container">
@@ -70,15 +94,13 @@ function LibBook() {
         console.log('renderBookTable');
         return (
             <div className="table-resposive mt-5">
-                <table className="table table-bordered border-dark">
+                <table className="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Knygos ID</th>
-                            <th scope="col">Pavadinimas</th>
-                            <th scope="col">Knygyno ID</th>
-                            {/*<th scope="col">Description</th>*/}
-                            {/*<th scope="col">Amount</th>*/}
+                            <th scope="col">Book ID</th>
+                            <th scope="col">Book Name</th>
+                            <th scope="col">Book Description</th>
+                            <th scope="col">Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,13 +109,30 @@ function LibBook() {
                                 <th scope="row">{book.bookId}</th>
                                 <td>{book.bookName}</td>
                                 <td>{book.bookDesc}</td>
-                                <td>{book.libraryId}</td>
-                                {/*<td>{library.libraryDescription}</td>*/}
-                                {/*<td>{library.libraryBookedBooks}</td>*/}
+                                <td>
+                                    <Link to={`/allCities/citLibraries/libBooks/bookEdit`} params={{ testvalue: book.bookId }}>
+                                        <button className="btn btn-dark" onClick={() => BookEdit(
+                                            localStorage.setItem("Cid", id),
+                                            localStorage.setItem("Libid", Libid),
+                                            localStorage.setItem("Bookid", book.bookId)
+                                        )}>Edit</button>
+                                    </Link>
+                                    <button className="btn btn-dark" onClick={() => handleDelete(book.bookId)}>Delete</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+                <br></br>
+                {/*<Link to={`/allCities/citLibraries/libBooks/bookCreate`}>*/}
+                {/*    <button className="btn btn-secondary" onClick={() => BookCreate()}>Create new city</button>*/}
+                {/*</Link>*/}
+                <Link to={`/allCities/citLibraries/libBooks/bookCreate`} params={{ testvalue: id, testvalue2: Libid }}>
+                    <button className="btn btn-secondary" onClick={() => BookCreate(
+                        localStorage.setItem("Cid", id),
+                        localStorage.setItem("Libid", Libid)
+                    )}>Create</button>
+                </Link>
             </div>
         );
     }

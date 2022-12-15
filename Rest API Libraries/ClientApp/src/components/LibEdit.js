@@ -2,21 +2,22 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react'
 import axios from 'axios';
-import backend from "./backend/backend.js";
 import AuthService from '../services/authservice';
 
 export default function LibEdit() {
-    const [id, getID] = useState(null);
+    const [cid, getCitID] = useState(null);
+    const [libid, getLibID] = useState(null);
     const [LibName, setName] = useState('');
     useEffect(() => {
 
-        getID(localStorage.getItem("Id"));
+        getCitID(localStorage.getItem("Cid"));
+        getLibID(localStorage.getItem("Libid"));
     }, []);
 
     const a = AuthService.getCurrentUser();
     if (!a) {
         return (
-            <Navigate to="/allLibraries">
+            <Navigate to="/allCities">
             </Navigate>
         )
     }
@@ -25,17 +26,18 @@ export default function LibEdit() {
     };
 
     const putData = (e) => {
-        console.log(id);
-        backend.put(`https://localhost:7119/api/libraries/${id}`, { LibraryName: LibName }, { headers });
+        console.log(cid);
+        axios.put(`https://localhost:7011/api/cities/${cid}` + "/libraries/" + `${libid}`, { LibraryName: LibName }, { headers });
     }
     return (
         <div>
-            <Form className="create-form">
+            <label>Type new library name</label>
+            <Form className="form-group">
                 <Form.Field>
-                    <label>First Name</label>
-                    <input placeholder='First Name' onChange={(e) => setName(e.target.value)} />
+                    <input placeholder='New Lib...' onChange={(e) => setName(e.target.value)} />
                 </Form.Field>
-                <Button onClick={putData} type='submit'>Submit</Button>
+                <br></br>
+                <Button className="btn btn-success" onClick={putData} type='submit'>Change name</Button>
             </Form>
         </div>
     )

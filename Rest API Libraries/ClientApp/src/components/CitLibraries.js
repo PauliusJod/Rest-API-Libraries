@@ -6,11 +6,10 @@ import { useLocation } from "react-router-dom";
 import { Button, Form } from 'semantic-ui-react';
 import LibBooks from './LibBooks';
 import LibCreate from './LibCreate';
+import LibEdit from './LibEdit';
 import axios from 'axios';
 
-import backend from "./backend/backend.js";
 import AuthService from '../services/authservice';
-
 
 function CitLibraries() {
 
@@ -20,7 +19,11 @@ function CitLibraries() {
     const [error, setError] = useState("");
     const [libraries, setLibraries] = useState([]);
     let history = useNavigate();
-   
+    const a = AuthService.getCurrentUser();
+    console.log(a);
+    const headers = {
+        'Authorization': `Bearer ${a.accessToken}`
+    };
     const handleLink = (libid) => {
         //localStorage.setItem("Citid", id),
         localStorage.setItem("Libid", libid)
@@ -31,6 +34,19 @@ function CitLibraries() {
         getID(localStorage.getItem("Id"));
     }, []);
 
+
+    const handleDelete = (libid) => {
+        console.log(libid);
+        console.log(headers);
+        axios.delete(`https://localhost:7011/api/cities/${cid}` + "/libraries/" + `${libid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
+        //.then((response) => {
+        //    window.location.reload();
+        //})
+
+        //.catch((error) => {
+        //    setError(error);
+        //});
+    };
 
     function getLibraries() {
         const url = `https://localhost:7011/api/cities/${cid}` + "/libraries";
@@ -74,18 +90,21 @@ function CitLibraries() {
             </div>
         </div>
     );
-
+    {/*className="table table-hover"*/ }
+    {/*className="btn btn-success"*/ }
+    {/*className="btn btn-dark"*/ }
     function renderLibraryTable() {
         console.log('renderLibraryTable');
         return (
             <div className="table-resposive mt-5">
-                <table className="table table-bordered border-dark">
+                <table className="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Library booked books</th>
-                            <th scope="col">Options</th>
+                            <th scope="col">Available books</th>
+                            <th scope="col">Library options</th>
 
                         </tr>
                     </thead>
@@ -96,10 +115,16 @@ function CitLibraries() {
                                 <td>{library.libraryName}</td>
                                 <td>{library.libraryBookedBooks}</td>
                                 <td>
-                                 {/*   <Link to={`/allCities/citLibraries/libBooks`}>*/}
-                                        <button onClick={() => handleLink(library.id)}>Show all library books</button>
-                                    {/*</Link>*/}
-                                    {/*<button onClick={() => handleLibraries(city.id)}>Show all libraries</button>*/}
+                                    <button className="btn btn-success" onClick={() => handleLink(library.id)}>Open books list</button>
+                                </td>
+                                <td>
+                                    <Link to={`/allCities/citLibraries/libEdit`} params={{ testvalue: cid, testvalue2: library.id }}>
+                                        <button className="btn btn-dark" onClick={() => LibEdit(
+                                            localStorage.setItem("Cid", cid),
+                                            localStorage.setItem("Libid", library.id)
+                                        )}>Edit</button>
+                                    </Link>
+                                    <button className="btn btn-dark" nClick={() => handleDelete(library.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
@@ -107,7 +132,7 @@ function CitLibraries() {
                 </table>
                 <br></br>
                 <Link to={`/allLibraries/LibCreate`} params={{ testvalue: cid }}>
-                    <button onClick={() => LibCreate(
+                    <button className="btn btn-secondary" onClick={() => LibCreate(
                         localStorage.setItem("Cid", cid)
                     )}>Create</button>
                 </Link>

@@ -84,7 +84,7 @@ namespace Rest_API_Libraries.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles = LibrariesRoles.LibraryUser)]
+        [Authorize(Roles = LibrariesRoles.Admin)]
         [Route("{libraryId}")]
         public async Task<ActionResult> Remove(int libraryId, int cityId)
         {

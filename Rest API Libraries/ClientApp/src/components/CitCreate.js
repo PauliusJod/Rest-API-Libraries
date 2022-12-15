@@ -1,6 +1,8 @@
 ﻿import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react'
 import Constants from "../utilities/Constants";
+
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import AllCities from './AllCities';
 import AuthService from '../services/authservice';
@@ -11,6 +13,9 @@ export default function CitCreate() {
 
     const [CitName, setName] = useState('');
     const [CitDesc, setDescription] = useState('');
+
+    const navigate = useNavigate();
+
 
     const a = AuthService.getCurrentUser();
     const headers = {
@@ -23,6 +28,7 @@ export default function CitCreate() {
             Name: CitName,
             Description: CitDesc
         }, { headers })
+        navigate("/allCities");
         console.log(CitName);
         console.log(CitDesc);
     }
@@ -30,14 +36,15 @@ export default function CitCreate() {
         <div>
             <Form className="create-form">
                 <Form.Field>
-                    <label>First Name</label>
+                    {/*<label>First Name</label>*/}
                     <input placeholder='City Name' onChange={(e) => setName(e.target.value)} />
                 </Form.Field>
                 <Form.Field>
-                    <label>Last Name</label>
+                    {/*<label>Last Name</label>*/}
                     <input placeholder='Description' onChange={(e) => setDescription(e.target.value)} />
                 </Form.Field>
-                <Button onClick={postData} type='submit'>Submit</Button>
+                <br></br>
+                <Button className="btn btn-success" onClick={postData} type='submit'>Submit</Button>
             </Form>
         </div>
     )

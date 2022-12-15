@@ -9,7 +9,10 @@ import CitLibraries from './components/CitLibraries';
 import LibBooks from "./components/LibBooks";
 import LibCreate from "./components/LibCreate";
 import CitCreate from "./components/CitCreate";
-
+import CitEdit from "./components/CitEdit";
+import LibEdit from "./components/LibEdit";
+import BookEdit from "./components/BookEdit";
+import BookCreate from './components/BookCreate';
 
 const AppRoutes = [
     {
@@ -30,7 +33,11 @@ const AppRoutes = [
     },
     {
         path: '/allCities/CitCreate',
-            element: <CitCreate />
+        element: <CitCreate />
+    },
+    {
+        path: '/allCities/CitEdit',
+        element: <CitEdit />
     },
     {
         path: '/allLibraries/LibCreate',
@@ -43,6 +50,18 @@ const AppRoutes = [
     {
         path: '/allCities/citLibraries/libBooks',
         element: <LibBooks />
+    },
+    {
+        path: '/allCities/citLibraries/libEdit',
+        element: <LibEdit />
+    },
+    {
+        path: '/allCities/citLibraries/libBooks/bookEdit',
+        element: <BookEdit />
+    },
+    {
+        path: '/allCities/citLibraries/libBooks/bookCreate',
+        element: <BookCreate />
     },
     {
         path: '/allBooks',

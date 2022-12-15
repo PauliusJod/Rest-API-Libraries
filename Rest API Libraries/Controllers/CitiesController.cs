@@ -69,7 +69,7 @@ namespace Rest_API_Libraries.Controllers
         //api/v1/cities/{id}
         [HttpPut]
         [Route("{cityid}")]
-        [Authorize(Roles = LibrariesRoles.LibraryUser)]
+        [Authorize(Roles = LibrariesRoles.Admin)]
         public async Task<ActionResult<CityDto>> Update(int cityid, UpdateCityDto updateCityDto)
         {
             var city = await _citiesRepository.GetCityAsync(cityid);
@@ -94,7 +94,7 @@ namespace Rest_API_Libraries.Controllers
         //api/v1/cities/{id}
         [HttpDelete]
         [Route("{cityid}")]
-        [Authorize(Roles = LibrariesRoles.LibraryUser)]
+        [Authorize(Roles = LibrariesRoles.Admin)]
         public async Task<ActionResult> Remove(int cityid)
         {
             var city = await _citiesRepository.GetCityAsync(cityid);

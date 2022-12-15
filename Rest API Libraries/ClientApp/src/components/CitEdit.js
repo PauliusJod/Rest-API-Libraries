@@ -2,13 +2,12 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react'
 import axios from 'axios';
-import backend from "./backend/backend.js";
 import AuthService from '../services/authservice';
 
 export default function CitEdit() {
     const [id, getID] = useState(null);
-    const [CitName, setName] = useState('');
-    const [CitId, setId] = useState('');
+    const [CitDesc, setDesc] = useState('');
+    //const [CitId, setId] = useState('');
     useEffect(() => {
 
         getID(localStorage.getItem("Id"));
@@ -27,20 +26,17 @@ export default function CitEdit() {
 
     const putData = (e) => {
         console.log(id);
-        backend.put(`https://localhost:7119/api/cities/${id}`, { cityName: CitName, UserId: CitId }, { headers });
+        axios.put(`https://localhost:7011/api/cities/${id}`, { Description: CitDesc }, { headers });
     }
     return (
         <div>
+            <label>City Description</label>
             <Form className="create-form">
                 <Form.Field>
-                    <label>First Name</label>
-                    <input placeholder='City Name' onChange={(e) => setName(e.target.value)} />
+                    <input placeholder='...' onChange={(e) => setDesc(e.target.value)} />
                 </Form.Field>
-                <Form.Field>
-                    <label>First Name</label>
-                    <input placeholder='User ID' onChange={(e) => setId(e.target.value)} />
-                </Form.Field>
-                <Button onClick={putData} type='submit'>Submit</Button>
+                <br></br>
+                <Button className="btn btn-success" onClick={putData} type='submit'>Change description</Button>
             </Form>
         </div>
     )
