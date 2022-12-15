@@ -61,7 +61,7 @@ namespace Rest_API_Libraries.Controllers
 
 
             // 201
-            return CreatedAtAction("GetCity", new { cityId = city.Id }, new CreateCityDto(city.Name, city.Description));
+            return CreatedAtAction("GetCity", new { cityId = city.Id }, new CreateCityDto(city.Name, city.Description)); //, city.UserId
 
         }
 

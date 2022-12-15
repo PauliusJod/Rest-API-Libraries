@@ -1,8 +1,8 @@
 ﻿const API_BASE_URL_DEVELOPMENT = "https://localhost:7011";
 
 const ENDPOINTS = {
-    GET_ALL_LIBRARIES: 'api/libraries',
-    GET_LIBRARY_BY_ID: 'api/libraries/libraryId',
+    GET_ALL_LIBRARIES: 'api/cities/2/libraries',
+    GET_LIBRARY_BY_ID: 'api/cities/1/libraries/libraryId',
     GET_ALL_USERS: 'api/users',
     GET_USER_BY_ID: 'api/users/userId',
     //GET_ALL_RESERVATIONS: 'api/reservations',
@@ -11,8 +11,8 @@ const ENDPOINTS = {
     //GET_EBOOK_BY_ID: 'api/ebooks/ebooksId',
     GET_ALL_CITIES: 'api/cities',
     GET_CITY_BY_ID: 'api/cities/cityId',
-    GET_ALL_BOOKS: 'api/books',
-    GET_BOOK_BY_ID: 'api/books/bookId',
+    GET_ALL_BOOKS: 'api/cities/1/libraries/1/books',
+    GET_BOOK_BY_ID: 'api/cities/1/libraries/1/books/bookId',
     TO_HOME: 'api/#',
     TO_LOGIN: 'api/login',
     TO_REGISTER: 'api/register'

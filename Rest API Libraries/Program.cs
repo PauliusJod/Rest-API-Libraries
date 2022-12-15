@@ -37,6 +37,7 @@ builder.Services.AddIdentity<LibrariesUser, IdentityRole>()
 
 
 builder.Services.AddDbContext<LibrariesDbContext>();
+builder.Services.AddTransient<IBooksRepository, BooksRepository>();
 builder.Services.AddTransient<ILibrariesRepositories, LibrariesRepositories>();
 builder.Services.AddTransient<ICitiesRepositories, CitiesRepositories>();
 builder.Services.AddTransient<IJwtTokenService, JwtTokenService>();

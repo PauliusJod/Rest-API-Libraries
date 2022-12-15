@@ -1,18 +1,28 @@
-﻿a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿@import url('https://fonts.googleapis.com/css2?family=Rubik+Gemstones&display=swap');
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 html {
-  font-size: 14px;
+    font-size: 14px;
+    font-family: 'Rubik Gemstones', cursive;
 }
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
+}
+.testas {
+    font-family: 'Rubik Gemstones', cursive;
 }
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+/*oxanium*/
+
+/*<link rel="preconnect" href="https://fonts.googleapis.com" > <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin > <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500&display=swap" rel="stylesheet" >font-family: 'Oxanium', cursive;*/
