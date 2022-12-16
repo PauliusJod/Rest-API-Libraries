@@ -9,7 +9,6 @@ import AuthService from '../services/authservice';
 
 
 const BUTTON_WRAPPER_STYLES = {
-    //backgroundColor: 'red',
     position: 'relative',
     textAlign: 'center',
     zIndex: 1
@@ -20,21 +19,12 @@ const button_styles = {
     border: '1px solid rgba(0,0,0,1)',
     fontSize: '24px'
 }
-const TABLE_BUTTONS_STYLE = {
-    //backgroundColor: 'red',
-    position: 'relative',
-    textAlign: 'center',
-    zIndex: 1
-}
-
-
 
 function City() {
 
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     const [cities, setCities] = useState([]);
-    const [isShown, setIsShown] = useState(false);
 
     const a = AuthService.getCurrentUser();
     console.log(a);
@@ -55,9 +45,6 @@ function City() {
         axios.delete(`https://localhost:7011/api/cities/${cityid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
 
     };
-    function changeBackground(e) {
-        e.target.style.background = 'red';
-    }
 
 
     function getCities() {
@@ -122,7 +109,6 @@ function City() {
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
                             <th scope="col">Amount Of Libraries</th>
-                            {/*<th scope="col">Amount Of Books</th>*/}
                             <th scope="col">City libraries</th>
                             <th scope="col">Options</th>
                         </tr>
@@ -135,10 +121,7 @@ function City() {
                                 <td>{city.description}</td>
                                 <td>{city.amountOfLibraries}</td>
                                 <td>
-                                    {/*<Link to={`/allCities/citLibraries`}>*/}
                                     <button className="btn btn-success" onClick={() => handleLink(city.id)}>Show all libraries</button>
-                                    {/*</Link>*/}
-                                    {/*<button onClick={() => handleLibraries(city.id)}>Show all libraries</button>*/}
                                 </td>
                                 <td>
                                     <Link to={`/allCities/CitEdit`} params={{ testvalue: city.id }}>
@@ -163,24 +146,3 @@ function City() {
 }
 
 export default City;
-    //const handleLibraries = async (id) => {
-    //    console.log('GO TO -libraries: ' + id);
-    //    const url = `https://localhost:7011/api/cities/${id}` + "/libraries";
-
-    //    fetch(url, {
-    //        method: "GET",
-    //    })
-    //        .then((response) => response.json())
-
-    //        .then((citiesFromServer) => {
-    //            console.log(citiesFromServer);
-    //            setCities(citiesFromServer);
-    //        })
-    //        .catch((error) => {
-    //            console.log('eroras?')
-    //            console.log(error);
-    //            alert(error);
-    //        });
-    //    axios.delete(`https://localhost:7119/api/cities/${id}`);
-
-    //}
