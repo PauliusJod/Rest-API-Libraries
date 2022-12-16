@@ -1,4 +1,4 @@
-const API_BASE_URL_DEVELOPMENT = "https://localhost:7011";
+const API_BASE_URL_DEVELOPMENT = "https://localhost:44303";
 
 const ENDPOINTS = {
     GET_ALL_LIBRARIES: 'api/cities/2/libraries',
