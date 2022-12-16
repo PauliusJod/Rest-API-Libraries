@@ -1,4 +1,4 @@
-﻿import axios from "axios";
+import axios from "axios";
 import Constants from "../utilities/Constants";
 
 class AuthService {

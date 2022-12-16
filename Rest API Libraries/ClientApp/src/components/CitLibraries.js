@@ -12,7 +12,7 @@ function CitLibraries() {
 
     const navigate = useNavigate();
     const [cid, getID] = useState(null);
-    const [error, setError] = useState("");
+    const [error] = useState("");
     const [libraries, setLibraries] = useState([]);
     const a = AuthService.getCurrentUser();
     console.log(a);
