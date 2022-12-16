@@ -25,7 +25,7 @@ export default function CitEdit() {
 
     const putData = (e) => {
         console.log(id);
-        axios.put('https://localhost:7011/api/cities/' + id, { Description: CitDesc }, { headers });
+        axios.put('https://restapilibraries.azurewebsites.net/api/cities/' + id, { Description: CitDesc }, { headers });
     }
     return (
         <div>

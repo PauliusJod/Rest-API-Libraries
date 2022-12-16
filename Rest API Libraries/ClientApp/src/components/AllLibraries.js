@@ -26,7 +26,7 @@
 
 //    const putData = (e) => {
 //        console.log(id);
-//        axios.fetch(`https://localhost:7011/api/cities/${id}` + "/libraries", { /*cityName: CitName, UserId: CitId */}, { /*headers*/ });
+//        axios.fetch(`https://restapilibraries.azurewebsites.net/api/cities/${id}` + "/libraries", { /*cityName: CitName, UserId: CitId */}, { /*headers*/ });
 //    }
 //    const a = AuthService.getCurrentUser();
 //    //if (!a) {
@@ -42,7 +42,7 @@
 //    const handleDelete = (libid) => {
 //        console.log(libid);
 //        console.log(headers);
-//        axios.delete(`https://localhost:7011/api/cities/2/libraries/${libid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
+//        axios.delete(`https://restapilibraries.azurewebsites.net/api/cities/2/libraries/${libid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
 //            //.then((response) => {
 //            //    window.location.reload();
 //            //})

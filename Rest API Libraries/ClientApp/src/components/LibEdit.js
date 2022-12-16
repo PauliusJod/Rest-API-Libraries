@@ -28,7 +28,7 @@ export default function LibEdit() {
 
     const putData = (e) => {
         console.log(cid);
-        axios.put('https://localhost:7011/api/cities/' + cid + '/libraries/' + libid, { LibraryName: LibName }, { headers });
+        axios.put('https://restapilibraries.azurewebsites.net/api/cities/' + cid + '/libraries/' + libid, { LibraryName: LibName }, { headers });
     }
     return (
         <div>

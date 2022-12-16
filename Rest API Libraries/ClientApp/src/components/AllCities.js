@@ -42,7 +42,7 @@ function City() {
     const handleDelete = (cityid) => {
         console.log('delete' + cityid);
         console.log(headers);
-        axios.delete(`https://localhost:7011/api/cities/${cityid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
+        axios.delete(`https://restapilibraries.azurewebsites.net/api/cities/${cityid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
 
     };
 

@@ -21,7 +21,7 @@ export default function CitCreate() {
 
 
     const postData = () => {
-        axios.post('https://localhost:7011/api/cities', {
+        axios.post('https://restapilibraries.azurewebsites.net/api/cities', {
             Name: CitName,
             Description: CitDesc
         }, { headers })

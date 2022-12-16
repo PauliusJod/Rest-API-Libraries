@@ -27,7 +27,7 @@ export default function BookCreate() {
 
 
     const postData = () => {
-        axios.post('https://localhost:7011/api/cities/' + cid + '/libraries/' + libid + '/books', {
+        axios.post('https://restapilibraries.azurewebsites.net/api/cities/' + cid + '/libraries/' + libid + '/books', {
             BookAuthor: bookAuthor,
             BookName: bookName,
             BookDesc: bookDesc

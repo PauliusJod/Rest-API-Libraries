@@ -1,4 +1,4 @@
-const API_BASE_URL_DEVELOPMENT = "https://localhost:44303";
+const API_BASE_URL_DEVELOPMENT = "https://restapilibraries.azurewebsites.net";
 
 const ENDPOINTS = {
     GET_ALL_LIBRARIES: 'api/cities/2/libraries',

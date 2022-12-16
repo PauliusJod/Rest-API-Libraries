@@ -32,11 +32,11 @@ function CitLibraries() {
     const handleDelete = (libid) => {
         console.log(libid);
         console.log(headers);
-        axios.delete('https://localhost:7011/api/cities/' + cid + '/libraries/' + libid, { headers });
+        axios.delete('https://restapilibraries.azurewebsites.net/api/cities/' + cid + '/libraries/' + libid, { headers });
     };
 
     function getLibraries() {
-        const url = 'https://localhost:7011/api/cities/' + cid + '/libraries';
+        const url = 'https://restapilibraries.azurewebsites.net/api/cities/' + cid + '/libraries';
         console.log("id metode citlibraries-getlib: " + cid)
         fetch(url, {
             method: "GET",
