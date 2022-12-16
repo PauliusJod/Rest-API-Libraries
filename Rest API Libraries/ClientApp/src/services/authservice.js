@@ -1,8 +1,6 @@
 ﻿import axios from "axios";
 import Constants from "../utilities/Constants";
 
-const API_URL = Constants.API_URL_GET_AFTER_REGISTER;
-
 class AuthService {
     login(username, password) {
         return axios

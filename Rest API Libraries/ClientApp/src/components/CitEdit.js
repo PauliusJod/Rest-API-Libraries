@@ -7,7 +7,6 @@ import AuthService from '../services/authservice';
 export default function CitEdit() {
     const [id, getID] = useState(null);
     const [CitDesc, setDesc] = useState('');
-    //const [CitId, setId] = useState('');
     useEffect(() => {
 
         getID(localStorage.getItem("Id"));
@@ -26,7 +25,7 @@ export default function CitEdit() {
 
     const putData = (e) => {
         console.log(id);
-        axios.put(`https://localhost:7011/api/cities/${id}`, { Description: CitDesc }, { headers });
+        axios.put('https://localhost:7011/api/cities/' + id, { Description: CitDesc }, { headers });
     }
     return (
         <div>

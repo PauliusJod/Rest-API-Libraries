@@ -18,7 +18,7 @@ export default function LibCreate() {
         getID(localStorage.getItem("Cid"));
     }, []);
     const postData = () => {
-        axios.post(`https://localhost:7011/api/cities/${citid}` + `/libraries/`, {
+        axios.post('https://localhost:7011/api/cities/' + citid + '/libraries/', {
             LibraryName: LibName
         })
 

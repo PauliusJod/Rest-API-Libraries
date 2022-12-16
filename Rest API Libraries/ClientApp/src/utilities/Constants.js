@@ -27,8 +27,6 @@ const development = {
     API_URL_REGISTER: `${API_BASE_URL_DEVELOPMENT}/${ENDPOINTS.TO_REGISTER}`
 };
 
-
-
 const Constants = development;
 
 export default Constants;

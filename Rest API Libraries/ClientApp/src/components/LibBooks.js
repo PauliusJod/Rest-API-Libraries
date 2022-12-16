@@ -32,14 +32,14 @@ function LibBook() {
         console.log('delete book : ' + bookid);
         console.log(headers);
         //eslint-disable-next-line
-        axios.delete(`https://localhost:7011/api/cities/${id}` + `/libraries/` + `${Libid}` + `/books/` + `${bookid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
+        axios.delete('https://localhost:7011/api/cities/' + id + '/libraries/' + Libid + '/books/' + bookid, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
 
         navigate("/allCities/citLibraries/libBooks");
 
     };
     function getBooks() {
         //eslint-disable-next-line
-        const url = `https://localhost:7011/api/cities/${id}` + "/libraries/" + Libid + "/books";
+        const url = 'https://localhost:7011/api/cities/' + id + '/libraries/' + Libid + '/books';
 
         fetch(url, {
             method: "GET",

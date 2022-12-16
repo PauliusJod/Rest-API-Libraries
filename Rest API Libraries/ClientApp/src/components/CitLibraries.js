@@ -36,7 +36,7 @@ function CitLibraries() {
     const handleDelete = (libid) => {
         console.log(libid);
         console.log(headers);
-        axios.delete(`https://localhost:7011/api/cities/${cid}` + `/libraries/` + `${libid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
+        axios.delete('https://localhost:7011/api/cities/' + cid + '/libraries/' + libid, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
         //.then((response) => {
         //    window.location.reload();
         //})

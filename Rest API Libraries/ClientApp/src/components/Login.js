@@ -7,7 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AuthService from "../services/authservice";
 import { withRouter } from "./common/with-router";
 import { replaceBackend } from "./backend/backend.js";
- //import { withRouter } from "../common/with-router";
 import axios from "axios";
 
 
