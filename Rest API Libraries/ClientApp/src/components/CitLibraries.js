@@ -1,7 +1,6 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from 'react-router-dom';
-import { useLocation } from "react-router-dom";
 import LibCreate from './LibCreate';
 import LibEdit from './LibEdit';
 import axios from 'axios';
@@ -11,19 +10,16 @@ import AuthService from '../services/authservice';
 
 function CitLibraries() {
 
-    const location = useLocation();
     const navigate = useNavigate();
     const [cid, getID] = useState(null);
     const [error, setError] = useState("");
     const [libraries, setLibraries] = useState([]);
-    let history = useNavigate();
     const a = AuthService.getCurrentUser();
     console.log(a);
     const headers = {
         'Authorization': `Bearer ${a.accessToken}`
     };
     const handleLink = (libid) => {
-        //localStorage.setItem("Citid", id),
         localStorage.setItem("Libid", libid)
         navigate("/allCities/citLibraries/libBooks");
 
@@ -36,19 +32,12 @@ function CitLibraries() {
     const handleDelete = (libid) => {
         console.log(libid);
         console.log(headers);
-        axios.delete('https://localhost:7011/api/cities/' + cid + '/libraries/' + libid, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
-        //.then((response) => {
-        //    window.location.reload();
-        //})
-
-        //.catch((error) => {
-        //    setError(error);
-        //});
+        axios.delete('https://localhost:7011/api/cities/' + cid + '/libraries/' + libid, { headers });
     };
 
     function getLibraries() {
-        const url = `https://localhost:7011/api/cities/${cid}` + "/libraries";
-        console.log("id metode citlibraries-getlib: " + cid) /* CITY ID */
+        const url = 'https://localhost:7011/api/cities/' + cid + '/libraries';
+        console.log("id metode citlibraries-getlib: " + cid)
         fetch(url, {
             method: "GET",
         })
@@ -58,11 +47,6 @@ function CitLibraries() {
                 console.log(librariesFromServer);
                 setLibraries(librariesFromServer);
             })
-            .catch((error) => {
-                console.log('eroras?')
-                console.log(error);
-                alert(error);
-            });
     }
 
 
@@ -88,9 +72,6 @@ function CitLibraries() {
             </div>
         </div>
     );
-    {/*className="table table-hover"*/ }
-    {/*className="btn btn-success"*/ }
-    {/*className="btn btn-dark"*/ }
     function renderLibraryTable() {
         console.log('renderLibraryTable');
         return (
@@ -98,12 +79,11 @@ function CitLibraries() {
                 <table className="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Library booked books</th>
-                            <th scope="col">Available books</th>
-                            <th scope="col">Library options</th>
-
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Library booked books</th>
+                            <th>Available books</th>
+                            <th>Library options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -141,28 +121,3 @@ function CitLibraries() {
 }
 
 export default CitLibraries;
-    //const putData = (e) => {
-    //    console.log(id);
-    //    axios.fetch(`https://localhost:7011/api/cities/${id}` + "/libraries", { /*cityName: CitName, UserId: CitId */ }, { /*headers*/ });
-    //}
-    //const handleDelete = async (id) => {
-    //    const a = AuthService.getCurrentUser();
-    //    //if (!a) {
-    //    //    return (<div>
-    //    //        { error?<p>Negalite to padaryti!</p> : <span></span>}
-    //    //        </div>
-    //    //    )
-    //    //}
-    //    const headers = {
-    //        'Authorization': `Bearer ${a.accessToken}`
-    //    };
-    //    console.log(id);
-    //    backend.delete(`https://localhost:7119/api/cities/1/libraries/${id}`, {}, { headers })
-    //        .then((response) => {
-    //            window.location.reload();
-    //        })
-
-    //        .catch((error) => {
-    //            setError(error);
-    //        });
-    //};
