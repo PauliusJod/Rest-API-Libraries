@@ -32,7 +32,7 @@ export default function BookEdit() {
 
     const putData = (e) => {
         console.log(cid);
-        axios.put(`https://localhost:7011/api/cities/${cid}` + "/libraries/" + `${libid}` + "/books/" + `${bookid}`, { BookDesc: bookDesc }, { headers });
+        axios.put(`https://localhost:7011/api/cities/${cid}` + `/libraries/` + `${libid}` + `/books/` + `${bookid}`, { BookDesc: bookDesc }, { headers });
 
         navigate("/allCities/citLibraries/libBooks");
     }

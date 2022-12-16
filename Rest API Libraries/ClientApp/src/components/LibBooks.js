@@ -9,6 +9,7 @@ import AuthService from '../services/authservice';
 function LibBook() {
     const [id, getID] = useState(null);
     const [Libid, getLibID] = useState(null);
+    //eslint-disable-next-line
     const [error, setError] = useState("");
     console.log('Book() pradzia');
     const [books, setBooks] = useState([]);
@@ -17,8 +18,6 @@ function LibBook() {
 
 
     useEffect(() => {
-
-        //getCitID(localStorage.getItem("Citid"));
         getID(localStorage.getItem("Id"));
         getLibID(localStorage.getItem("Libid"));
     }, []);
@@ -28,22 +27,18 @@ function LibBook() {
         'Authorization': `Bearer ${a.accessToken}`
     };
 
-    //const handleLink = (id) => {
-    //    localStorage.setItem("Id", id)
-
-    //    navigate("/allCities/citLibraries");
-
-    //}
 
     const handleDelete = (bookid) => {
         console.log('delete book : ' + bookid);
         console.log(headers);
-        axios.delete(`https://localhost:7011/api/cities/${id}` + "/libraries/" + `${Libid}` + "/books/" + `${bookid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
+        //eslint-disable-next-line
+        axios.delete(`https://localhost:7011/api/cities/${id}` + `/libraries/` + `${Libid}` + `/books/` + `${bookid}`, { headers });    // NEGALIMA PALIKTI {} TUSCIO!
 
         navigate("/allCities/citLibraries/libBooks");
 
     };
     function getBooks() {
+        //eslint-disable-next-line
         const url = `https://localhost:7011/api/cities/${id}` + "/libraries/" + Libid + "/books";
 
         fetch(url, {
@@ -62,9 +57,6 @@ function LibBook() {
             });
     }
     console.log('return pradzia');
-    {/*className="table table-hover"*/ }
-    {/*className="btn btn-success"*/ }
-    {/*className="btn btn-dark"*/ }
     return (
         <div className="Book">
             <div className="container">
@@ -122,9 +114,6 @@ function LibBook() {
                     </tbody>
                 </table>
                 <br></br>
-                {/*<Link to={`/allCities/citLibraries/libBooks/bookCreate`}>*/}
-                {/*    <button className="btn btn-secondary" onClick={() => BookCreate()}>Create new city</button>*/}
-                {/*</Link>*/}
                 <Link to={`/allCities/citLibraries/libBooks/bookCreate`} params={{ testvalue: id, testvalue2: Libid }}>
                     <button className="btn btn-secondary" onClick={() => BookCreate(
                         localStorage.setItem("Cid", id),
@@ -137,18 +126,3 @@ function LibBook() {
 }
 
 export default LibBook;
-//export class AllLibraries extends Component {
-//    //static testasName = Testas.name;
-//    //const { update } = useFieldArray({ name: 'array' });
-//  render() {
-//      let aaaa = "Printinsim visas bibliotekas...";
-//    return (
-//      <div>
-//            <h1>Sveiki, atvykę čia rasite visas bibliotekas!</h1>
-//            <p>{aaaa }</p>
-//            {/*<p>{this.update}</p>*/}
-//        {/*<p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>*/}
-//      </div>
-//    );
-//  }
-//}
