@@ -47,3 +47,23 @@
 | Atsakymo struktūra JSON (pvz) | { "id": 1, "name": "Kaunas", "description": "TESTCHANGE", "amountOfLibraries": 0 } |
 | Neigiamas atsakymo kodas - netinkama rolė žetone  | Forbidden - 403 |
 | Neigiamas atsakymo kodas - netinkamas token'as arba jo nėra  | Unauthorized - 401 |
+
+Projekte naudojamas JWT token, jo algoritmas: HS256
+Iššifruotas žetonas:
+`
+Header
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+PAYLOAD
+{
+  "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": "paulius55",
+  "jti": "834db686-1d17-4d29-8242-1489127b6e62",
+  "sub": "8ee549de-a988-4354-8545-5f3681bf478f",
+  "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "LibraryUser",
+  "exp": 1671702633,
+  "iss": "ReactIssuer",
+  "aud": "TrustedClient"
+}
+`
