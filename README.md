@@ -1,4 +1,10 @@
 # Rest API Libraries
+**Pirminė projekto saugykla**
+```
+https://github.com/PauliusJod/RestLibraries
+Saugykla buvo pakeista dėl react.js patogesnio pridėjimo prie projekto.
+```
+
 
 **Projekto tikslas**
 ```
