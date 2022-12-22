@@ -112,16 +112,6 @@ Naudotojai mato daug funkcionalumą suteikiančių mygtukų, tačiau daugumos j�
 | Neigiamas atsakymo kodas - miesto su pasirinktu ID nėra | Not Found - 404 |
 
 
-
-
-
-
-
-
-
-
-
-
 | API funkcija  | Get Libraries |
 | ------------- | ------------- |
 | Paskirtis | Naudojama gauti visų registruotų miesto bibliotekų sistemoje sąrašą. |
@@ -175,13 +165,53 @@ Naudotojai mato daug funkcionalumą suteikiančių mygtukų, tačiau daugumos j�
 
 
 
+| API funkcija  | Get Books |
+| ------------- | ------------- |
+| Paskirtis | Naudojama gauti pasirinkto miesto ir jam priklausančios bibliotekos knygų sąrašą sistemoje. |
+| Endpoint | api/cities/{cityId}/libraries/{libraryId}/books |
+| Žetonas | Žetonas nėra tikrinamas. |
+| Atsakymo kodas | Ok - 200 |
+| Atsakymo struktūra JSON (pvz) | [{ "bookId": 1, "bookAuthor": "Raffaello Giovagnoli", "bookName": "Spartakas", "bookDesc": "Garsiausias visų laikų gladiatorius, gyvenęs I a. pr. Kr. Gimė Trakijoje, romėnų buvo paimtas į nelaisvę, parduotas į vergiją ir atiduotas į Kapujos gladiatorių mokyklą." }] |
+| Neigiamas atsakymo kodas | Nėra |
+
+| API funkcija  | Get Book |
+| ------------- | ------------- |
+| Paskirtis | Naudojama gauti pasirinkto miesto ir jam priklausančios bibliotekos knygą, pasirinktą pagal knygos ID. |
+| Endpoint | api/cities/{cityId}/libraries/{libraryId}/books/{bookId} |
+| Atsakymo kodas | Ok - 200 |
+| Atsakymo struktūra JSON (pvz) | { "bookId": 1, "bookAuthor": "Raffaello Giovagnoli", "bookName": "Spartakas", "bookDesc": "Garsiausias visų laikų gladiatorius, gyvenęs I a. pr. Kr. Gimė Trakijoje, romėnų buvo paimtas į nelaisvę, parduotas į vergiją ir atiduotas į Kapujos gladiatorių mokyklą." } |
+| Neigiamas atsakymo kodas | Not Found - 404 |
+
+| API funkcija  | Create (book) |
+| ------------- | ------------- |
+| Paskirtis  | Naudojama norint sukūrti naują knygą, kuri būtų priskirta bibliotekai ir miestui pagal pateiktus ID. |
+| Endpoint  | api/cities/{cityId}/libraries/{libraryId}/books |
+| Užklausos struktūra JSON  | { "bookAuthor": "Antanas Baranauskas", "bookName": "Anykščių šilelis", "bookDesc": "Lietuviška knyga" } |
+| Atsakymo kodas  | Created - 201 |
+| Atsakymo struktūra JSON (pvz) | { "bookAuthor": "Antanas Baranauskas", "bookName": "Anykščių šilelis", "bookDesc": "Lietuviška knyga" } |
+| Neigiamas atsakymo kodas - nerastas miesto,bibliotekos ID | Not Found - 404 |
+| Neigiamas atsakymo kodas - blogi išsiunčiami duomenys | Bad Request - 400 |
+
+| API funkcija  | Update (book) |
+| ------------- | ------------- |
+| Paskirtis | Naudojama norint pakeisti knygos aprašymą. |
+| Endpoint | api/cities/{cityId}/libraries/{libraryId}/books/{bookId} |
+| Užklausos struktūra JSON | { "bookDesc": "Lietuviška knyga-update" } |
+| Žetonas | Žetonas nėra tikrinamas. |
+| Atsakymo kodas | Ok - 200 |
+| Atsakymo struktūra JSON (pvz) | { "bookId": 2, "bookAuthor": "Antanas Baranauskas", "bookName": "Anykščių šilelis", "bookDesc": "Lietuviška knyga-update" } |
+| Neigiamas atsakymo kodas - nerastas miesto,bibliotekos arba knygos ID | Not Found - 404 |
+| Neigiamas atsakymo kodas - bloga išsiunčiamų duomenų struktūra | Bad Request - 400 |
 
 
-
-
-
-
-
+| API funkcija  | Delete (book) |
+| ------------- | ------------- |
+| Paskirtis  | Naudojama norint ištrinti knygą iš miesto bibliotekos sąrašo. |
+| Endpoint  | api/cities/{cityId}/libraries/{libraryId}/books/{bookId} |
+| Žetonas | Žetonas nėra tikrinamas. |
+| Atsakymo kodas  | No Content - 204 |
+| Atsakymo struktūra JSON (pvz) | Nėra |
+| Neigiamas atsakymo kodas - knygos su pasirinktais miesto, bibliotekos arba knygos ID nėra | Not Found - 404 |
 
 
 
