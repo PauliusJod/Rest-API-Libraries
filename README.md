@@ -48,9 +48,9 @@
 | Neigiamas atsakymo kodas - netinkama rolė žetone  | Forbidden - 403 |
 | Neigiamas atsakymo kodas - netinkamas token'as arba jo nėra  | Unauthorized - 401 |
 
-Projekte naudojamas JWT token, jo algoritmas: HS256
-Iššifruotas žetonas:
-`
+**Projekte naudojamas JWT token, jo algoritmas: HS256**<br><br>
+**Iššifruotas žetonas:**
+```
 Header
 {
   "alg": "HS256",
@@ -66,4 +66,4 @@ PAYLOAD
   "iss": "ReactIssuer",
   "aud": "TrustedClient"
 }
-`
+```
