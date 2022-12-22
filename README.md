@@ -56,7 +56,9 @@ Naudotojai mato daug funkcionalumą suteikiančių mygtukų, tačiau daugumos j�
 | Neigiamas atsakymo kodas | Bad Request - 400 |
 
 
-| API funkcija  | GetCities |
+
+
+| API funkcija  | Get Cities |
 | ------------- | ------------- |
 | Paskirtis | Naudojama gauti visų registruotų miestų sistemoje sąrašą. |
 | Endpoint | api/cities |
@@ -65,7 +67,25 @@ Naudotojai mato daug funkcionalumą suteikiančių mygtukų, tačiau daugumos j�
 | Atsakymo struktūra JSON (pvz) | [{ "id": 1, "name": "Kaunas", "description": "Laikinoji sostinė", "amountOfLibraries": 0 }, { "id": 2, "name": "Vilnius", "description": "Sostinė", "amountOfLibraries": 0 }] |
 | Neigiamas atsakymo kodas | No Content - 204 |
 
+| API funkcija  | Get City |
+| ------------- | ------------- |
+| Paskirtis | Naudojama gauti vieną pasirinktą (pagal id) registruotą miestą sistemoje. |
+| Endpoint | api/cities/{cityid} |
+| Atsakymo kodas | Ok - 200 |
+| Atsakymo struktūra JSON (pvz) | { "id": 1, "name": "Kaunas", "description": "TESTCHANGE", "amountOfLibraries": 0 } |
+| Neigiamas atsakymo kodas | Not Found - 404 |
 
+| API funkcija  | Create (city) |
+| ------------- | ------------- |
+| Paskirtis  | Naudojama norint sukūrti naują miestą sąraše. |
+| Reikalinga rolė sistemoje  | LibraryUser |
+| Endpoint  | api/cities |
+| Užklausos struktūra JSON  | { "Name": "Test miestas 2", "Description": "Miestas" } |
+| Žetonas  | Žetonas siunčiamas iš frontend, per axios užklausą: headers: {'Authorization': `Bearer ${a.accessToken}`}. Backend tikrinama žetone slypinti informacija apie naudotojo rolę. |
+| Atsakymo kodas  | Created - 201 |
+| Atsakymo struktūra JSON (pvz) | { "name": "Test miestas 2", "description": "Miestas" } |
+| Neigiamas atsakymo kodas - netinkama rolė žetone  | Forbidden - 403 |
+| Neigiamas atsakymo kodas - netinkamas token'as arba jo nėra  | Unauthorized - 401 |
 
 | API funkcija  | Update (city) |
 | ------------- | ------------- |
@@ -73,11 +93,97 @@ Naudotojai mato daug funkcionalumą suteikiančių mygtukų, tačiau daugumos j�
 | Reikalinga rolė sistemoje  | Admin |
 | Endpoint  | api/cities/{cityid} |
 | Užklausos struktūra JSON  | { "Description": "TESTCHANGE" } |
-| Žetonas  | Žetonas tikrinamas tiek frontend, per axios užklausą: headers: {'Authorization': `Bearer ${a.accessToken}`}. Backend tikrinama žetone slypinti informacija apie naudotojo rolę. |
+| Žetonas  | Žetonas siunčiamas iš frontend, per axios užklausą: headers: {'Authorization': `Bearer ${a.accessToken}`}. Backend tikrinama žetone slypinti informacija apie naudotojo rolę. |
 | Atsakymo kodas  | Ok - 200 |
 | Atsakymo struktūra JSON (pvz) | { "id": 1, "name": "Kaunas", "description": "TESTCHANGE", "amountOfLibraries": 0 } |
 | Neigiamas atsakymo kodas - netinkama rolė žetone  | Forbidden - 403 |
 | Neigiamas atsakymo kodas - netinkamas token'as arba jo nėra  | Unauthorized - 401 |
+
+| API funkcija  | Delete (city) |
+| ------------- | ------------- |
+| Paskirtis  | Naudojama norint ištrinti miestą iš sąrašo. |
+| Reikalinga rolė sistemoje  | Admin |
+| Endpoint  | api/cities/{cityid} |
+| Žetonas  | Žetonas siunčiamas iš frontend, per axios užklausą: headers: {'Authorization': `Bearer ${a.accessToken}`}. Backend tikrinama žetone slypinti informacija apie naudotojo rolę. |
+| Atsakymo kodas  | No Content - 204 |
+| Atsakymo struktūra JSON (pvz) | Nėra |
+| Neigiamas atsakymo kodas - netinkama rolė žetone | Forbidden - 403 |
+| Neigiamas atsakymo kodas - netinkamas token'as arba jo nėra | Unauthorized - 401 |
+| Neigiamas atsakymo kodas - miesto su pasirinktu ID nėra | Not Found - 404 |
+
+
+
+
+
+
+
+
+
+
+
+
+| API funkcija  | Get Libraries |
+| ------------- | ------------- |
+| Paskirtis | Naudojama gauti visų registruotų miesto bibliotekų sistemoje sąrašą. |
+| Endpoint | api/cities/{cityId}/libraries |
+| Žetonas | Žetonas nėra tikrinamas. |
+| Atsakymo kodas | Ok - 200 |
+| Atsakymo struktūra JSON (pvz) | [{"id": 2, "libraryName": "Biblioteka", "libraryBookedBooks": 0 },{ "id": 3, "libraryName": "Biblioteka", "libraryBookedBooks": 0 }] |
+| Neigiamas atsakymo kodas | Nėra |
+
+| API funkcija  | Get Library |
+| ------------- | ------------- |
+| Paskirtis | Naudojama gauti vieną pasirinktą (pagal id) registruotą miesto biblioteką. |
+| Endpoint | api/cities/{cityId}/libraries/{libraryId} |
+| Atsakymo kodas | Ok - 200 |
+| Atsakymo struktūra JSON (pvz) | { "id": 2, "libraryName": "Biblioteka", "libraryBookedBooks": 0 } |
+| Neigiamas atsakymo kodas | Not Found - 404 |
+
+| API funkcija  | Create (library) |
+| ------------- | ------------- |
+| Paskirtis  | Naudojama norint sukūrti naują biblioteką, miesto sąraše. |
+| Endpoint  | api/cities/{cityId}/libraries |
+| Užklausos struktūra JSON  | { "libraryName": "Biblioteka" } |
+| Atsakymo kodas  | Created - 201 |
+| Atsakymo struktūra JSON (pvz) | { "libraryName": "Biblioteka" } |
+| Neigiamas atsakymo kodas - nerastas miesto id  | Not Found - 404 |
+| Neigiamas atsakymo kodas - blogi išsiunčiami duomenys  | Bad Request - 400 |
+
+| API funkcija  | Update (library) |
+| ------------- | ------------- |
+| Paskirtis | Naudojama norint pakeisti bibliotekos aprašymą. |
+| Reikalinga rolė sistemoje | Admin |
+| Endpoint | api/cities/{cityId}/libraries/{libraryId} |
+| Užklausos struktūra JSON | { "libraryName": "Biblioteka-update" } |
+| Žetonas | Žetonas siunčiamas iš frontend, per axios užklausą: headers: {'Authorization': `Bearer ${a.accessToken}`}. Backend tikrinama žetone slypinti informacija apie naudotojo rolę. |
+| Atsakymo kodas | Ok - 200 |
+| Atsakymo struktūra JSON (pvz) | { "id": 2, "libraryName": "Biblioteka-update", "libraryBookedBooks": 0 } |
+| Neigiamas atsakymo kodas - netinkama rolė žetone | Forbidden - 403 |
+| Neigiamas atsakymo kodas - netinkamas token'as arba jo nėra | Unauthorized - 401 |
+
+| API funkcija  | Delete (library) |
+| ------------- | ------------- |
+| Paskirtis  | Naudojama norint ištrinti biblioteką iš miesto sąrašo. |
+| Reikalinga rolė sistemoje  | Admin |
+| Endpoint  | api/cities/{cityId}/libraries/{libraryId} |
+| Žetonas  | Žetonas siunčiamas iš frontend, per axios užklausą: headers: {'Authorization': `Bearer ${a.accessToken}`}. Backend tikrinama žetone slypinti informacija apie naudotojo rolę. |
+| Atsakymo kodas  | No Content - 204 |
+| Atsakymo struktūra JSON (pvz) | Nėra |
+| Neigiamas atsakymo kodas - netinkama rolė žetone | Forbidden - 403 |
+| Neigiamas atsakymo kodas - netinkamas token'as arba jo nėra | Unauthorized - 401 |
+| Neigiamas atsakymo kodas - miesto su pasirinktu ID nėra | Not Found - 404 |
+
+
+
+
+
+
+
+
+
+
+
+
 
 **Projekte naudojamas JWT token, jo algoritmas: HS256**<br><br>
 **Iššifruoto žetono pavyzdys:**
