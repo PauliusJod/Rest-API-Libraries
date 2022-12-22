@@ -13,6 +13,7 @@
 | Atsakymo struktūra JSON | { "id": "8ee549de-a988-4354-8545-5f3681bf478f", "userName": "paulius55", "email": "paulius55@gmail.com" }  |
 | Neigiamas atsakymo kodas  | Bad Request - 400  |
 
+
 | API funkcija  | Login |
 | ------------- | ------------- |
 | Paskirtis  | Naudojama visų rolių naudotojų prisijungiant prie sistemos.  |
