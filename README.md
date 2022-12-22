@@ -18,6 +18,12 @@ Sistemos atvaizdavimą sukūrti patogų, paprastą naudotis visiems vartotojams 
 Naudotojai mato daug funkcionalumą suteikiančių mygtukų, tačiau daugumos jų naudojimas yra tikrinamas JWT žetono pagalba ir gražinama klaida į naršyklės išvesties lauką, arba vartotojas nukeliamas į kitą langą su jau atlikto veiksmo pakeitimais.
 ```
 
+![CreateBook lango karkasas](CreateBook_Simplified.png)
+![CreateBook langas](CreateBook.png)
+
+![GetCities lango karkasas](GetCities_simplified.png)
+![GetCities langas](GetCities.png)
+
 ![Deployment diagram](Deployment_diagram.png)
 
 
