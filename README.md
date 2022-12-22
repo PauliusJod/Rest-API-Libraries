@@ -18,7 +18,7 @@ Sistemos atvaizdavimą sukūrti patogų, paprastą naudotis visiems vartotojams 
 Naudotojai mato daug funkcionalumą suteikiančių mygtukų, tačiau daugumos jų naudojimas yra tikrinamas JWT žetono pagalba ir gražinama klaida į naršyklės išvesties lauką, arba vartotojas nukeliamas į kitą langą su jau atlikto veiksmo pakeitimais.
 ```
 
-![Deployment diagram](http://url/to/img.png)
+![Deployment diagram](https://prnt.sc/vh9zU4zLBrnM)
 
 
 | API funkcija  | Register |
