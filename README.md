@@ -1,6 +1,24 @@
 # Rest API Libraries
 
+**Projekto tikslas**
+```
+Projekto tikslas buvo sukurti API, kuriame galima matyti ir valdyti, pridėti ir redaguoti skirtingus sistemos lygmenis, t.y.: miestus, bibliotekas, knygas. Taip pat būtų galima rezervuoti knygas atsiėmimui bibliotekoje. Visa tai pateikti patogioje „frontend“ dalyje, paruoštoje savo pasirinktu įrankiu – react.js 
+```
 
+**Iškelti uždaviniai**
+```
+Leisti rezervuoti knygą pagal pasirinktą miestą, biblioteką.
+Kiekvienam naudotojui prisijungus priskirti žetoną (token).
+Pilnai veikiančios CRUD struktūros su kiekviena duomenų lentele. CRUD apribotas įtraukiant sistemoje esančias naudotojų roles.
+Sistemos atvaizdavimą sukūrti patogų, paprastą naudotis visiems vartotojams bei paįvairinti jį su skirtingais html, js funkcionalumais.
+```
+
+**Sistemos architektūra**
+```
+Naudotojai mato daug funkcionalumą suteikiančių mygtukų, tačiau daugumos jų naudojimas yra tikrinamas JWT žetono pagalba ir gražinama klaida į naršyklės išvesties lauką, arba vartotojas nukeliamas į kitą langą su jau atlikto veiksmo pakeitimais.
+```
+
+![Deployment diagram](http://url/to/img.png)
 
 
 | API funkcija  | Register |
@@ -66,4 +84,9 @@ PAYLOAD
   "iss": "ReactIssuer",
   "aud": "TrustedClient"
 }
+```
+
+**Projekto išvados**
+```
+Projektas nėra pilnai išbaigtas, tačiau tai stabilus pagrindas jo plėtrai. Naudojami JWT žetonai suteikia sistemos saugumo ir jo funkcionalumo. Sistemos lygiai „Miestas -> Biblioteka -> Knyga“ gali leisti skirstyti vartotojus pagal jų profilius į miestus ar jiems priskirtas bibliotekas. Taip pat plėtojant sistemą galima apriboti rezervuojamų knygų kiekį vienam vartotojui. JavaScript biblioteka – React.js leidžia patogiai redaguoti vartotojo sąsają, galima apriboti pateikiamo funkcionalumo kiekį pagal naudotojo rolių skirstymą.
 ```
