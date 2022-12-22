@@ -49,7 +49,7 @@
 | Neigiamas atsakymo kodas - netinkamas token'as arba jo nėra  | Unauthorized - 401 |
 
 **Projekte naudojamas JWT token, jo algoritmas: HS256**<br><br>
-**Iššifruotas žetonas:**
+**Iššifruoto žetono pavyzdys:**
 ```
 Header
 {
